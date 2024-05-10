@@ -58,3 +58,8 @@ let de = ref(localeMessagesDe)
     </tbody>
   </VTable>
 </template>
+
+<style scoped>
+.v-table {
+}
+</style>
