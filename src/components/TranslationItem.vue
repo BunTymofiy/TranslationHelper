@@ -1,21 +1,18 @@
 <template>
-  <td v-for="translation in listOfAllTranslations" :key="translation[listKey]">
-    <TranslationItem
-      v-if="typeof translation[listKey] == 'object'"
-      :listOfAllTranslations="listOfAllTranslations"
-      :listKey="listKey"
-    />
-    <div v-else>
-      <td>{{ translation[listKey] }}</td>
+  <td v-if="typeof translation[listKey] == 'object'">
+    <div v-for="subKey in Object.keys(translation)" :key="subKey">
+      <TranslationItem :listKey="subKey" :translation="translation" />
     </div>
+  </td>
+  <td v-else>
+    {{ translation[listKey] }}
   </td>
 </template>
 
 <script setup lang="ts">
-
 interface Props {
-  listOfAllTranslations: Record<string, any>[]
   listKey: string
+  translation: Record<string, any>
 }
 defineProps<Props>()
 </script>
