@@ -1,7 +1,14 @@
 <template>
   <td v-if="typeof translation[listKey] == 'object'">
-    <div v-for="subKey in Object.keys(translation)" :key="subKey">
-      <TranslationItem :listKey="subKey" :translation="translation" />
+    <div v-for="subKey in Object.keys(translation[listKey])" :key="subKey">
+        <VTable>
+            <thead>
+                <tr>
+                    <th>{{ subKey }}</th>
+                </tr>
+            </thead>
+        </VTable>
+      <TranslationItem :listKey="subKey" :translation="translation[listKey]" />
     </div>
   </td>
   <td v-else>

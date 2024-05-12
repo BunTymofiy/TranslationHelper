@@ -40,7 +40,6 @@ const he = <Record<string, any>>localeMessagesHe
 const sv = <Record<string, any>>localeMessagesSv
 const de = <Record<string, any>>localeMessagesDe
 const listOfAllTranslations = ref<Record<string, any>[]>([en, fr, ar, he, sv, de])
-console.log(listOfAllTranslations.value)
 </script>
 
 <style scoped></style>
