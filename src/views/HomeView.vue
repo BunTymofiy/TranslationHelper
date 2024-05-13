@@ -16,7 +16,7 @@
         <td>{{ key }}</td>
 
         <td v-for="translation in listOfAllTranslations" :key="translation[key]">
-          <TranslationItem :listKey="key" :translation="translation" />
+          <TranslationItem :listKey="key" :translation="translation" :enKey="key" :en="en" />
         </td>
       </tr>
     </tbody>
@@ -40,6 +40,10 @@ const he = <Record<string, any>>localeMessagesHe
 const sv = <Record<string, any>>localeMessagesSv
 const de = <Record<string, any>>localeMessagesDe
 const listOfAllTranslations = ref<Record<string, any>[]>([en, fr, ar, he, sv, de])
+
+const updateTranslation = (index: number, value: Record<string, any>) => {
+  listOfAllTranslations.value[index] = value
+}
 </script>
 
 <style scoped></style>
