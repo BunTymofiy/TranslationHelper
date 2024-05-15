@@ -3,20 +3,21 @@
     <thead>
       <tr>
         <th>Key</th>
-        <th>English</th>
-        <th>French</th>
-        <th>Arabic</th>
-        <th>Hebrew</th>
-        <th>Swedish</th>
-        <th>German</th>
+        <th v-for="language in allLanguages" :key="language">{{ language }}</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="key in Object.keys(en)" :key="key">
         <td>{{ key }}</td>
 
-        <td v-for="translation in listOfAllTranslations" :key="translation[key]">
-          <TranslationItem :listKey="key" :translation="translation" :enKey="key" :en="en" />
+        <td v-for="(translation, index) in listOfAllTranslations" :key="translation[key]">
+          <TranslationItem
+            :listKey="key"
+            :translation="translation"
+            :en="en"
+            @update:translation="(value: Record<string, any>) => updateTranslation(index, value)"
+            :languages="allLanguages"
+          />
         </td>
       </tr>
     </tbody>
@@ -40,6 +41,8 @@ const he = <Record<string, any>>localeMessagesHe
 const sv = <Record<string, any>>localeMessagesSv
 const de = <Record<string, any>>localeMessagesDe
 const listOfAllTranslations = ref<Record<string, any>[]>([en, fr, ar, he, sv, de])
+
+const allLanguages = ['English', 'French', 'Arabic', 'Hebrew', 'Swedish', 'German']
 
 const updateTranslation = (index: number, value: Record<string, any>) => {
   listOfAllTranslations.value[index] = value

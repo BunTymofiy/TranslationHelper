@@ -5,18 +5,13 @@
         <thead>
           <tr>
             <th>
-              <h1 style="color: brown">{{ en[enKey][subKey] }}</h1>
+              <h1 style="color: brown">{{ en[listKey][subKey] }}</h1>
               <h1>{{ subKey }}</h1>
             </th>
           </tr>
         </thead>
       </VTable>
-      <TranslationItem
-        :listKey="subKey"
-        :translation="translation[listKey]"
-        :enKey="enKey"
-        :en="en"
-      />
+      <TranslationItem :listKey="subKey" :translation="translation[listKey]" :en="en" />
     </div>
   </td>
   <td v-else>
@@ -31,11 +26,10 @@
 interface Props {
   listKey: string
   translation: Record<string, any>
-  enKey: string
   en: Record<string, any>
 }
-defineProps<Props>()
-
+const props = defineProps<Props>()
+console.log(props)
 interface Emits {
   (event: 'update:translation', value: Record<string, any>): void
 }
