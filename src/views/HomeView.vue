@@ -1,5 +1,5 @@
 <template>
-  <VTable>
+  <VTable density="compact" height="900px">
     <thead>
       <tr>
         <th>Key</th>
@@ -10,7 +10,7 @@
       <tr v-for="key in Object.keys(en)" :key="key">
         <td>{{ key }}</td>
 
-        <td v-for="(translation, index) in listOfAllTranslations" :key="translation[key]">
+        <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
           <TranslationItem
             :listKey="key"
             :translation="translation"
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import localeMessagesEn from '@/assets/files_to_translate/en.js'
 import localeMessagesFr from '@/assets/files_to_translate/fr.js'
 import localeMessagesAr from '@/assets/files_to_translate/ar.js'
@@ -33,6 +33,7 @@ import localeMessagesHe from '@/assets/files_to_translate/he.js'
 import localeMessagesSv from '@/assets/files_to_translate/sv.js'
 import localeMessagesDe from '@/assets/files_to_translate/de.js'
 import TranslationItem from '@/components/TranslationItem.vue'
+import { uuid } from 'vue-uuid'
 
 const en = <Record<string, any>>localeMessagesEn
 const fr = <Record<string, any>>localeMessagesFr
@@ -47,6 +48,19 @@ const allLanguages = ['English', 'French', 'Arabic', 'Hebrew', 'Swedish', 'Germa
 const updateTranslation = (index: number, value: Record<string, any>) => {
   listOfAllTranslations.value[index] = value
 }
+
+function getNewRandomUUID() {
+  const newUuid = uuid.v4()
+  return newUuid
+}
+
+watch(
+  listOfAllTranslations,
+  (newVal) => {
+    console.log('newVal', newVal)
+  },
+  { deep: true }
+)
 </script>
 
 <style scoped></style>

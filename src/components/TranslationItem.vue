@@ -1,35 +1,41 @@
 <template>
-  <td v-if="typeof translation[listKey] == 'object'">
-    <div v-for="subKey in Object.keys(translation[listKey])" :key="subKey">
+  <td v-if="typeof en[listKey] == 'object'">
+    <div v-for="(subKey, index) in Object.keys(en[listKey])" :key="subKey">
       <VTable>
         <thead>
           <tr>
             <th>
-              <h1 style="color: brown">{{ en[listKey][subKey] }}</h1>
-              <h1>{{ subKey }}</h1>
+              {{ subKey }}
             </th>
           </tr>
         </thead>
       </VTable>
-      <TranslationItem :listKey="subKey" :translation="translation[listKey]" :en="en" />
+      <TranslationItem
+        :listKey="subKey"
+        :translation="translation && translation[listKey] ? translation[listKey] : {}"
+        :en="en[listKey]"
+      />
     </div>
   </td>
   <td v-else>
     <input
-      :value="translation[listKey]"
-      @input="updateTranslation({ ...translation, [listKey]: $event.target.value })"
+      :value="translation && translation[listKey] ? translation[listKey] : ''"
+      @change="updateTranslation({ ...translation, [listKey]: $event.target.value })"
+      placeholder="Enter translation here..."
+      :key="getNewRandomUUID()"
     />
   </td>
 </template>
 
 <script setup lang="ts">
+import { uuid } from 'vue-uuid'
+
 interface Props {
   listKey: string
   translation: Record<string, any>
   en: Record<string, any>
 }
 const props = defineProps<Props>()
-console.log(props)
 interface Emits {
   (event: 'update:translation', value: Record<string, any>): void
 }
@@ -37,6 +43,10 @@ const emit = defineEmits<Emits>()
 
 const updateTranslation = (value: Record<string, any>) => {
   emit('update:translation', value)
+}
+
+function getNewRandomUUID() {
+  return uuid.v4()
 }
 </script>
 
