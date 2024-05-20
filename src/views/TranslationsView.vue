@@ -9,12 +9,13 @@
     <tbody>
       <tr v-for="key in englishKeys" :key="key">
         <td>{{ key }}</td>
-        <td v-for="language in allLanguages" :key="language.label">
-          <TranslationDisplay
-            :translationObject="objectOfAllTranslations[language.label][key]"
-            :trKey="key"
-          />
-        </td>
+        <TranslationDisplay
+          v-for="language in allLanguages"
+          :key="language.label"
+          :translationObject="objectOfAllTranslations[language.label][key]"
+          :trKey="key"
+          :currentEn="en[key]"
+        />
       </tr>
     </tbody>
   </table>
@@ -70,7 +71,13 @@ function getNewRandomUUID() {
   const newUuid = uuid.v4()
   return newUuid
 }
-
+function isObject(translationObject: Record<string, any>) {
+  if (typeof translationObject == 'object') {
+    return true
+  } else {
+    return false
+  }
+}
 const englishKeys = Object.keys(en)
 </script>
 
