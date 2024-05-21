@@ -1,5 +1,5 @@
 <template>
-  <table style="border-collapse: collapse">
+  <table style="border-collapse: collapse; overflow: visible">
     <thead>
       <tr>
         <th>Key</th>

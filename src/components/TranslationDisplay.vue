@@ -1,18 +1,20 @@
 <template>
-  <div v-if="isObject(translationObject, trKey)">
-    <div v-for="(translation, key, index) in translationObject" :key="key">
-      <TranslationDisplay
-        :translationObject="translation"
-        :trKey="key"
-        :currentEn="currentEn[key]"
-      />
+  <td v-if="isObject(translationObject)">
+    <div class="grid-container">
+      <div class="grid-item" v-for="aKey in currentEnKeys" :key="aKey">
+        {{ aKey }}
+        <TranslationDisplay
+          :translationObject="translationObject[aKey]"
+          :trKey="aKey"
+          :currentEn="currentEn[aKey]"
+        />
+      </div>
     </div>
-  </div>
+  </td>
   <td v-else>
     {{ translationObject }}
   </td>
 </template>
-
 <script setup lang="ts">
 interface Props {
   translationObject: Record<string, any> | string
@@ -29,7 +31,7 @@ function displayData(translationObject: Record<string, any>, trKey: string) {
   }
 }
 
-function isObject(translationObject: Record<string, any>) {
+function isObject(translationObject: Record<string, any> | string) {
   if (typeof translationObject == 'object') {
     return true
   } else {
@@ -40,4 +42,15 @@ function isObject(translationObject: Record<string, any>) {
 const currentEnKeys = isObject(props.currentEn) ? Object.keys(props.currentEn) : []
 </script>
 
-<style scoped></style>
+<style scoped>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust as needed */
+  gap: 10px; /* Adjust as needed */
+}
+
+.grid-item {
+  border: 1px solid #ccc; /* Adjust as needed */
+  padding: 10px; /* Adjust as needed */
+}
+</style>

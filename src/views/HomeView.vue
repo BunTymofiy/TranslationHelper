@@ -15,6 +15,7 @@
 
         <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
           <TranslationItem
+            :a="key"
             :listKey="key"
             :translation="translation"
             :en="en"

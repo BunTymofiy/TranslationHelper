@@ -11,6 +11,7 @@
         </thead>
       </VTable>
       <TranslationItem
+        :a="a + '.' + subKey"
         :listKey="subKey"
         :translation="translation && translation[listKey] ? translation[listKey] : {}"
         :en="en[listKey]"
@@ -33,11 +34,14 @@
 import { uuid } from 'vue-uuid'
 
 interface Props {
+  a: string
   listKey: string
   translation: Record<string, any>
   en: Record<string, any>
 }
-defineProps<Props>()
+
+const props = defineProps<Props>()
+
 interface Emits {
   (event: 'update:translation', value: Record<string, any>): void
 }
