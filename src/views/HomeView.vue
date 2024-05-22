@@ -1,8 +1,7 @@
 <template>
-  <div style="overflow: auto;">
-
-    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100%;">Export to JS</VBtn>
-    <table >
+  <div style="overflow: auto">
+    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100%">Export to JS</VBtn>
+    <table>
       <thead>
         <tr>
           <th>Key</th>
@@ -12,17 +11,14 @@
       <tbody>
         <tr v-for="key in Object.keys(en)" :key="key">
           <td>{{ key }}</td>
-  
+
           <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
             <TranslationItem
               :path="[key]"
               :listKey="key"
               :translation="translation"
               :en="en"
-              @update:translation="
-                (path, value) =>
-                  updateTranslation(path, value, index)
-              "
+              @update:translation="(path, value) => updateTranslation(path, value, index)"
             />
           </td>
         </tr>
@@ -62,35 +58,17 @@ const allLanguages = [
 ]
 // Method to change exactly one translation in the exact language using the exact path
 function updateTranslation(path: string[], value: string, index: number) {
-  debugger
-  /*const newTranslation = { ...listOfAllTranslations.value[index] }
-  let currentTranslation = newTranslation
-  path.forEach((key, index) => {
-    if (index === path.length - 1) {
-      currentTranslation[key] = value
+  let currentObject = listOfAllTranslations.value[index]
+  for (let i = 0; i < path.length; i++) {
+    if (i === path.length - 1) {
+      currentObject[path[i]] = value
     } else {
-      currentTranslation[key] = { ...currentTranslation[key] }
-      currentTranslation = currentTranslation[key]
+      if (!currentObject[path[i]]) {
+        currentObject[path[i]] = {}
+      }
+      currentObject = currentObject[path[i]]
     }
-  })
-  listOfAllTranslations.value[index] = newTranslation*/
-
-  if(path.length === 1) {
-    listOfAllTranslations.value[index][path[0]] = value
-  } else if(path.length === 2) {
-    listOfAllTranslations.value[index][path[0]][path[1]] = value
-  } else if(path.length === 3) {
-    listOfAllTranslations.value[index][path[0]][path[1]][path[2]] = value
-  } else if(path.length === 4) {
-    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]] = value
-  } else if(path.length === 5) {
-    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]][path[4]] = value
-  } else if(path.length === 6) {
-    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]][path[4]][path[5]] = value
   }
-
-
-
 }
 function getNewRandomUUID() {
   const newUuid = uuid.v4()
@@ -136,11 +114,11 @@ th {
   color: #fff;
 }
 
-tr:nth-child(even) th[scope=row] {
+tr:nth-child(even) th[scope='row'] {
   background-color: #f2f2f2;
 }
 
-tr:nth-child(odd) th[scope=row] {
+tr:nth-child(odd) th[scope='row'] {
   background-color: #fff;
 }
 
@@ -170,70 +148,80 @@ tr:nth-child(odd) {
   text-align: right;
 }
 
-
 /* Scrolling wrapper */
 
-div[tabindex="0"][aria-labelledby][role="region"] {
+div[tabindex='0'][aria-labelledby][role='region'] {
   overflow: auto;
 }
 
-div[tabindex="0"][aria-labelledby][role="region"]:focus {
-  box-shadow: 0 0 .5em rgba(0,0,0,.5);
-  outline: .1em solid rgba(0,0,0,.1);
+div[tabindex='0'][aria-labelledby][role='region']:focus {
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  outline: 0.1em solid rgba(0, 0, 0, 0.1);
 }
 
-div[tabindex="0"][aria-labelledby][role="region"] table {
+div[tabindex='0'][aria-labelledby][role='region'] table {
   margin: 0;
 }
 
-div[tabindex="0"][aria-labelledby][role="region"].rowheaders {
+div[tabindex='0'][aria-labelledby][role='region'].rowheaders {
   background:
-    linear-gradient(to right, transparent 30%, rgba(255,255,255,0)),
-    linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
-    radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)),
-    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)) 0 100%;
+    linear-gradient(to right, transparent 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
+    radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
   background-color: #fff;
-  background-size: 4em 100%, 4em 100%, 1.4em 100%, 1.4em 100%;
-  background-position: 0 0, 100%, 0 0, 100%;
+  background-size:
+    4em 100%,
+    4em 100%,
+    1.4em 100%,
+    1.4em 100%;
+  background-position:
+    0 0,
+    100%,
+    0 0,
+    100%;
   background-attachment: local, local, scroll, scroll;
 }
 
-div[tabindex="0"][aria-labelledby][role="region"].colheaders {
+div[tabindex='0'][aria-labelledby][role='region'].colheaders {
   background:
-    linear-gradient(white 30%, rgba(255,255,255,0)),
-    linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
-    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    linear-gradient(white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
   background-repeat: no-repeat;
   background-color: #fff;
-  background-size: 100% 4em, 100% 4em, 100% 1.4em, 100% 1.4em;
+  background-size:
+    100% 4em,
+    100% 4em,
+    100% 1.4em,
+    100% 1.4em;
   background-attachment: local, local, scroll, scroll;
 }
 
 /* Strictly for making the scrolling happen. */
 
-th[scope=row] {
+th[scope='row'] {
   min-width: 40vw;
 }
 
 @media all and (min-width: 30em) {
-  th[scope=row] {
+  th[scope='row'] {
     min-width: 20em;
   }
 }
-  
-th[scope=row] + td {
+
+th[scope='row'] + td {
   min-width: 24em;
 }
 
-div[tabindex="0"][aria-labelledby][role="region"]:nth-child(3) {
+div[tabindex='0'][aria-labelledby][role='region']:nth-child(3) {
   max-height: 18em;
 }
 
-div[tabindex="0"][aria-labelledby][role="region"]:nth-child(7) {
+div[tabindex='0'][aria-labelledby][role='region']:nth-child(7) {
   max-height: 15em;
   margin: 0 1em;
 }
-
 </style>
