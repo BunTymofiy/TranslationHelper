@@ -1,33 +1,34 @@
 <template>
-  <VTable density="compact" style="padding: 25px; background-color: #ffffff">
-    <template #top>
-      <VBtn @click="exportToMultipleJs()" color="primary">Export to JS</VBtn>
-    </template>
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th v-for="language in allLanguages" :key="language.label">{{ language.value }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="key in Object.keys(en)" :key="key">
-        <td>{{ key }}</td>
+  <div style="overflow: auto;">
 
-        <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
-          <TranslationItem
-            :a="key"
-            :listKey="key"
-            :translation="translation"
-            :en="en"
-            @update:translation="
-              (value: Record<string, any>) =>
-                updateTranslation(index, Object.keys(value)[0].split('.'), Object.values(value)[0])
-            "
-          />
-        </td>
-      </tr>
-    </tbody>
-  </VTable>
+    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100%;">Export to JS</VBtn>
+    <table >
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th v-for="language in allLanguages" :key="language.label">{{ language.value }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="key in Object.keys(en)" :key="key">
+          <td>{{ key }}</td>
+  
+          <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
+            <TranslationItem
+              :path="[key]"
+              :listKey="key"
+              :translation="translation"
+              :en="en"
+              @update:translation="
+                (path, value) =>
+                  updateTranslation(path, value, index)
+              "
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +43,7 @@ import TranslationItem from '@/components/TranslationItem.vue'
 import { uuid } from 'vue-uuid'
 import { saveAs } from 'file-saver'
 import JSZip from 'jszip'
+
 const en = <Record<string, any>>localeMessagesEn
 const fr = <Record<string, any>>localeMessagesFr
 const ar = <Record<string, any>>localeMessagesAr
@@ -58,33 +60,37 @@ const allLanguages = [
   { label: 'sv', value: 'Swedish' },
   { label: 'de', value: 'German' }
 ]
-
-// const updateTranslation = (index: number, value: Record<string, any>) => {
-//   listOfAllTranslations.value[index] = value
-// }
-function updateNestedTranslation(
-  obj: Record<string, any>,
-  path: string[],
-  value: any
-): Record<string, any> {
+// Method to change exactly one translation in the exact language using the exact path
+function updateTranslation(path: string[], value: string, index: number) {
   debugger
-  if (path.length === 1) {
-    obj[path[0]] = value
-  } else {
-    const [firstKey, ...remainingPath] = path
-    if (!obj[firstKey]) {
-      obj[firstKey] = {}
+  /*const newTranslation = { ...listOfAllTranslations.value[index] }
+  let currentTranslation = newTranslation
+  path.forEach((key, index) => {
+    if (index === path.length - 1) {
+      currentTranslation[key] = value
+    } else {
+      currentTranslation[key] = { ...currentTranslation[key] }
+      currentTranslation = currentTranslation[key]
     }
-    obj[firstKey] = updateNestedTranslation(obj[firstKey], remainingPath, value)
+  })
+  listOfAllTranslations.value[index] = newTranslation*/
+
+  if(path.length === 1) {
+    listOfAllTranslations.value[index][path[0]] = value
+  } else if(path.length === 2) {
+    listOfAllTranslations.value[index][path[0]][path[1]] = value
+  } else if(path.length === 3) {
+    listOfAllTranslations.value[index][path[0]][path[1]][path[2]] = value
+  } else if(path.length === 4) {
+    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]] = value
+  } else if(path.length === 5) {
+    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]][path[4]] = value
+  } else if(path.length === 6) {
+    listOfAllTranslations.value[index][path[0]][path[1]][path[2]][path[3]][path[4]][path[5]] = value
   }
-  return obj
-}
-const updateTranslation = (index: number, path: string[], value: any) => {
-  listOfAllTranslations.value[index] = updateNestedTranslation(
-    listOfAllTranslations.value[index],
-    path,
-    value
-  )
+
+
+
 }
 function getNewRandomUUID() {
   const newUuid = uuid.v4()
@@ -110,4 +116,124 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style scoped>
+table {
+  border-collapse: collapse;
+  border: 0.1em solid #d6d6d6;
+}
+
+th,
+td {
+  padding: 0.25em 0.5em 0.25em 1em;
+  vertical-align: text-top;
+  text-align: left;
+  text-indent: -0.5em;
+}
+
+th {
+  vertical-align: bottom;
+  background-color: #666;
+  color: #fff;
+}
+
+tr:nth-child(even) th[scope=row] {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) th[scope=row] {
+  background-color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.colheaders td:nth-of-type(2) {
+  font-style: italic;
+}
+
+.colheaders th:nth-of-type(3),
+.colheaders td:nth-of-type(3) {
+  text-align: right;
+}
+
+.rowheaders td:nth-of-type(1) {
+  font-style: italic;
+}
+
+.rowheaders th:nth-of-type(3),
+.rowheaders td:nth-of-type(2) {
+  text-align: right;
+}
+
+
+/* Scrolling wrapper */
+
+div[tabindex="0"][aria-labelledby][role="region"] {
+  overflow: auto;
+}
+
+div[tabindex="0"][aria-labelledby][role="region"]:focus {
+  box-shadow: 0 0 .5em rgba(0,0,0,.5);
+  outline: .1em solid rgba(0,0,0,.1);
+}
+
+div[tabindex="0"][aria-labelledby][role="region"] table {
+  margin: 0;
+}
+
+div[tabindex="0"][aria-labelledby][role="region"].rowheaders {
+  background:
+    linear-gradient(to right, transparent 30%, rgba(255,255,255,0)),
+    linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
+    radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 4em 100%, 4em 100%, 1.4em 100%, 1.4em 100%;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+div[tabindex="0"][aria-labelledby][role="region"].colheaders {
+  background:
+    linear-gradient(white 30%, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 100% 4em, 100% 4em, 100% 1.4em, 100% 1.4em;
+  background-attachment: local, local, scroll, scroll;
+}
+
+/* Strictly for making the scrolling happen. */
+
+th[scope=row] {
+  min-width: 40vw;
+}
+
+@media all and (min-width: 30em) {
+  th[scope=row] {
+    min-width: 20em;
+  }
+}
+  
+th[scope=row] + td {
+  min-width: 24em;
+}
+
+div[tabindex="0"][aria-labelledby][role="region"]:nth-child(3) {
+  max-height: 18em;
+}
+
+div[tabindex="0"][aria-labelledby][role="region"]:nth-child(7) {
+  max-height: 15em;
+  margin: 0 1em;
+}
+
+</style>
