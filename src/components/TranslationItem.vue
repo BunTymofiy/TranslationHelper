@@ -11,7 +11,6 @@
         </thead>
       </table>
       <TranslationItem
-        style="border: 1px solid rebeccapurple"
         :path="[...path, subKey]"
         :listKey="subKey"
         :translation="translation && translation[listKey] ? translation[listKey] : {}"
@@ -26,7 +25,7 @@
       @change="emitUpdate(path, ($event.target as HTMLInputElement).value)"
       placeholder="Enter translation here..."
       :key="getNewRandomUUID()"
-      :class="translation && translation[listKey] ? '' : 'dataMissing'"
+      :class="translation && translation[listKey] ? 'dataPresent' : 'dataMissing'"
     />
   </td>
 </template>
@@ -56,9 +55,47 @@ function getNewRandomUUID() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .dataMissing {
   background-color: rgba(255, 0, 0, 0.344);
 }
+.dataPresent {
+  background-color: rgba(0, 255, 0, 0.344);
+}
+table {
+  border-collapse: collapse;
+  border: 0.1em solid #454545;
+  border-radius: 0.5em;
+}
 
+th,
+td {
+  padding: 0.25em 0.5em 0.25em 1.5em;
+  vertical-align: text-top;
+  text-align: left;
+  text-indent: -0.5em;
+}
+
+th {
+  background-color: #666;
+  color: #fff;
+}
+
+tr:nth-child(even) th[scope='row'] {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) th[scope='row'] {
+  background-color: #fff;
+}
+input {
+  padding: 0.25em 0.5em;
+  border: 0.1em solid #454545;
+  border-radius: 0.5em;
+
+  &:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+  }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div style="overflow: auto">
-    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100%">Export to JS</VBtn>
+  <div style="overflow: auto; margin:1em">
+    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100vw">Export to JS</VBtn>
     <table>
       <thead>
         <tr>
@@ -102,7 +102,7 @@ table {
 
 th,
 td {
-  padding: 0.25em 0.5em 0.25em 1em;
+  padding: 0.25em 0em 0.25em 1em;
   vertical-align: text-top;
   text-align: left;
   text-indent: -0.5em;
@@ -130,98 +130,6 @@ tr:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.colheaders td:nth-of-type(2) {
-  font-style: italic;
-}
 
-.colheaders th:nth-of-type(3),
-.colheaders td:nth-of-type(3) {
-  text-align: right;
-}
 
-.rowheaders td:nth-of-type(1) {
-  font-style: italic;
-}
-
-.rowheaders th:nth-of-type(3),
-.rowheaders td:nth-of-type(2) {
-  text-align: right;
-}
-
-/* Scrolling wrapper */
-
-div[tabindex='0'][aria-labelledby][role='region'] {
-  overflow: auto;
-}
-
-div[tabindex='0'][aria-labelledby][role='region']:focus {
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-  outline: 0.1em solid rgba(0, 0, 0, 0.1);
-}
-
-div[tabindex='0'][aria-labelledby][role='region'] table {
-  margin: 0;
-}
-
-div[tabindex='0'][aria-labelledby][role='region'].rowheaders {
-  background:
-    linear-gradient(to right, transparent 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
-    radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
-    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size:
-    4em 100%,
-    4em 100%,
-    1.4em 100%,
-    1.4em 100%;
-  background-position:
-    0 0,
-    100%,
-    0 0,
-    100%;
-  background-attachment: local, local, scroll, scroll;
-}
-
-div[tabindex='0'][aria-labelledby][role='region'].colheaders {
-  background:
-    linear-gradient(white 30%, rgba(255, 255, 255, 0)),
-    linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
-    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size:
-    100% 4em,
-    100% 4em,
-    100% 1.4em,
-    100% 1.4em;
-  background-attachment: local, local, scroll, scroll;
-}
-
-/* Strictly for making the scrolling happen. */
-
-th[scope='row'] {
-  min-width: 40vw;
-}
-
-@media all and (min-width: 30em) {
-  th[scope='row'] {
-    min-width: 20em;
-  }
-}
-
-th[scope='row'] + td {
-  min-width: 24em;
-}
-
-div[tabindex='0'][aria-labelledby][role='region']:nth-child(3) {
-  max-height: 18em;
-}
-
-div[tabindex='0'][aria-labelledby][role='region']:nth-child(7) {
-  max-height: 15em;
-  margin: 0 1em;
-}
 </style>
