@@ -80,35 +80,7 @@ var localeMessages = {
   settings: 'Paramètres',
   change_theme: 'Thèmes',
   message: 'Message',
-  messages: {
-    not_any_record_found: "L'enregistrement n'a pas été trouvé.",
-    not_history_for_tracking_code_found: 'Aucun historique trouvé pour le code de suivi.',
-    not_selected_principals: "Aucun dossier d'entités n'est sélectionné renommer le dossier.",
-    write_dont_work_folder_name: 'Veuillez sélectionner un nom pour le dossier tâches à effectuer.',
-    write_done_work_folder_name: 'Veuillez sélectionner un nom pour le dossier tâches terminées.',
-    write_dont_send_request_folder_name:
-      'Veuillez sélectionner un nom pour le dossier projet en cours.',
-    save_attntion: 'Êtes-vous sûr de vouloir continuer?',
-    changing_name: 'Changement de nom en cours...',
-    sucsses_message: 'Les modifications sont enregistrées avec succès.',
-    file_volume: 'Taille du fichier',
-    file_upload: 'Ne devrait pas dépasser 300 kb.',
-    file_type: 'Télécharger un fichier au format jpg, png ou gif.',
-    delete_sucsses: 'Supprimé avec succès',
-    reset_confirm: "Êtes-vous sûr de vouloir réinitialiser l'image d'arrière-plan par défaut?",
-    doing_sucsses: 'Terminé avec succès',
-    file_type_attention: 'Seuls les fichiers jpg, png ou gif sont pris en charge.',
-    delete_confirm_massage: 'Êtes-vous sûr de vouloir supprimer?',
-    your_request_has_been_sent: 'Votre demande a été envoyée avec succès.',
-    confirm_message: 'Êtes-vous certain de vouloir faire ce changement?',
-    save_successfully: 'Enregistré avec succès.',
-    password_not_currect: "Nom d'utilisateur ou mot de passe incorrect.",
-    connection_not_safe: "La connexion n'est pas sécurisée.",
-    pleas_try_later: 'Veuillez réessayer.',
-    username_or_password_is_null: "Nom d'utilisateur ou mot de passe incorrect.",
-    control_behavior_not_exists:
-      "Il n'existe aucun comportement de formulaire pour cet élément de formulaire."
-  },
+  messages: 'Messages',
   apply: 'Appliquer',
   all_messages: 'Tous les messages',
   new_message: 'Nouveau message',
@@ -298,7 +270,8 @@ var localeMessages = {
     updating_chart: 'Mise à jour du graphique…',
     updating_map: 'Mise à jour de la carte…',
     error_in_get_map_data: 'Erreur lors de la récupération des données cartographiques.',
-    loading: 'Chargement...',
+
+    loading: 'Loading...',
     exportButtonTitle: 'Exporter',
     printButtonTitle: 'Imprimer',
     rangeSelectorFrom: 'Depuis',
@@ -312,6 +285,7 @@ var localeMessages = {
     downloadCSV: 'Télécharger le texte',
     printChart: 'Imprimer le graphique',
     contextButtonTitle: 'Menu contextuel du graphique',
+
     month_january: 'Janvier',
     month_february: 'Février',
     month_march: 'Mars',
@@ -324,6 +298,7 @@ var localeMessages = {
     month_october: 'Octobre',
     month_november: 'Novembre',
     month_december: 'Décembre',
+
     short_month_january: 'Jan',
     short_month_february: 'Fév',
     short_month_march: 'Mar',
@@ -336,6 +311,7 @@ var localeMessages = {
     short_month_october: 'Oct',
     short_month_november: 'Nov',
     short_month_december: 'Déc',
+
     weekday_monday: 'Lundi',
     weekday_tuesday: 'Mardi',
     weekday_wednesday: 'Mercredi',
@@ -367,8 +343,7 @@ var localeMessages = {
   comment_control: {
     delete_confirm: 'Êtes-vous sûr de vouloir supprimer?',
     back: 'retour',
-    save: 'Appliquer',
-    empty: 'Le commentaire ne peut pas être vide'
+    save: 'Appliquer'
   },
   dropdown_control: {
     select: 'Sélectionner...',
@@ -437,6 +412,35 @@ var localeMessages = {
       'Impossible de trouver cette tâche. Il a peut-être été exécuté par un autre utilisateur.',
     application_is_not_deployed: "L'application n'est pas déployée.",
     save_in_progress: "L'enregistrement est actuellement en cours, veuillez réessayer plus tard."
+  },
+  messages: {
+    not_any_record_found: "L'enregistrement n'a pas été trouvé.",
+    not_history_for_tracking_code_found: 'Aucun historique trouvé pour le code de suivi.',
+    not_selected_principals: "Aucun dossier d'entités n'est sélectionné renommer le dossier.",
+    write_dont_work_folder_name: 'Veuillez sélectionner un nom pour le dossier tâches à effectuer.',
+    write_done_work_folder_name: 'Veuillez sélectionner un nom pour le dossier tâches terminées.',
+    write_dont_send_request_folder_name:
+      'Veuillez sélectionner un nom pour le dossier projet en cours.',
+    save_attntion: 'Êtes-vous sûr de vouloir continuer?',
+    changing_name: 'Changement de nom en cours...',
+    sucsses_message: 'Les modifications sont enregistrées avec succès.',
+    file_volume: 'Taille du fichier',
+    file_upload: 'Ne devrait pas dépasser 300 kb.',
+    file_type: 'Télécharger un fichier au format jpg, png ou gif.',
+    delete_sucsses: 'Supprimé avec succès',
+    reset_confirm: "Êtes-vous sûr de vouloir réinitialiser l'image d'arrière-plan par défaut?",
+    doing_sucsses: 'Terminé avec succès',
+    file_type_attention: 'Seuls les fichiers jpg, png ou gif sont pris en charge.',
+    delete_confirm_massage: 'Êtes-vous sûr de vouloir supprimer?',
+    your_request_has_been_sent: 'Votre demande a été envoyée avec succès.',
+    confirm_message: 'Êtes-vous certain de vouloir faire ce changement?',
+    save_successfully: 'Enregistré avec succès.',
+    password_not_currect: "Nom d'utilisateur ou mot de passe incorrect.",
+    connection_not_safe: "La connexion n'est pas sécurisée.",
+    pleas_try_later: 'Veuillez réessayer.',
+    username_or_password_is_null: "Nom d'utilisateur ou mot de passe incorrect.",
+    control_behavior_not_exists:
+      "Il n'existe aucun comportement de formulaire pour cet élément de formulaire."
   },
   Lock: {
     'bpms-lock-expired': 'Le verrou est expirée!',
@@ -726,7 +730,7 @@ var localeMessages = {
     more_users: 'There are more results, please use better keywords'
   },
   rule_criterias: {
-    new_rule: 'Nouvelle règle',
+    new_rule: 'Créer une nouvelle règle',
     edit_rule: 'Modifier la règle',
     no_permission: "Vous avez besoin d'une autorisation!",
     tag_error: 'Erreur survenue lors de la mise à jour des balises!',
@@ -734,7 +738,9 @@ var localeMessages = {
     no_actions: "Pas d'action!",
     action: 'Action',
     rule_name: 'Nom de la règle',
+    new_rule: 'Nouvelle règle',
     operation: 'Opération',
+    rule_name: 'Nom de la règle',
     select_folder: 'Sélectionner le dossier'
   },
   ray_payment: {
@@ -762,7 +768,7 @@ var localeMessages = {
     level: 'Niveau',
     staff_id: "Numéro d'employé",
     application_name: "Nom de l'application",
-    server_name: 'Nom du serveur',
+    server_name: 'Nom de serveur',
     error_log: "Log d'erreurs",
     error_message: "Message d'erreur",
     api_log: "Journaux d'appels API",
@@ -782,6 +788,7 @@ var localeMessages = {
     user: 'Utilisateur',
     login_datetime: 'Date et heure de connexion',
     logout_datetime: 'Déconnexion Date et heure',
+    server_name: 'Nom du serveur',
     active_connections: 'Connexion active',
     send_message_all: 'Envoyer un message à tous',
     send_message_connection: 'Envoyer un message à cette connexion',
@@ -845,7 +852,7 @@ var localeMessages = {
     field_name: 'Nom de domaine',
     old_value: 'Ancienne valeur',
     new_value: 'Nouvelle valeur'
-  },
-  select_date: 'Veuillez sélectionner la date de début et de fin'
+  }
 }
+
 export default localeMessages

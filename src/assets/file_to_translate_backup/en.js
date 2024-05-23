@@ -80,33 +80,7 @@ var localeMessages = {
   settings: 'settings',
   change_theme: 'Themes',
   message: 'Message',
-  messages: {
-    not_any_record_found: 'Record was not found.',
-    not_history_for_tracking_code_found: 'No history found for tracking code.',
-    not_selected_principals: 'No principals are selected rename folder.',
-    write_dont_work_folder_name: 'Please select a name for To-Do Tasks folder.',
-    write_done_work_folder_name: 'Please select a name for Completed Tasks folder.',
-    write_dont_send_request_folder_name: 'Please select a name for Draft Request folder.',
-    save_attntion: 'Are you sure you want to proceed?',
-    changing_name: 'Renaming...',
-    sucsses_message: 'Changes are successfully saved.',
-    file_volume: 'File size',
-    file_upload: 'should not exceed 300 kb.',
-    file_type: 'Upload a file with jpg, png or gif format.',
-    delete_sucsses: 'Deleted Successfully',
-    reset_confirm: 'Are you sure you want to reset the background image as a default?',
-    doing_sucsses: 'Completed  Successfully',
-    file_type_attention: 'Only jpg, png or gif files are supported.',
-    delete_confirm_massage: 'Are you sure you want to delete?',
-    your_request_has_been_sent: 'Your request has been sent successfully.',
-    confirm_message: 'Are you sure?',
-    save_successfully: 'Saved Successfully.',
-    password_not_currect: 'Username or password is not correct.',
-    connection_not_safe: 'Connection is not secured.',
-    pleas_try_later: 'Please try again',
-    username_or_password_is_null: 'Username or password is not correct.',
-    control_behavior_not_exists: 'There is no form behavior for this form element.'
-  },
+  messages: 'Messages',
   apply: 'Apply',
   all_messages: 'All messages',
   new_message: 'New message',
@@ -144,7 +118,7 @@ var localeMessages = {
   select_file: 'Select File :',
   send_pdf: 'Send PDF File',
   by_level: 'Staff:',
-  view_all_staff: 'View all staff',
+  view_all_staff: '',
   image: 'Image',
   of: 'of',
   error: 'Error',
@@ -295,6 +269,7 @@ var localeMessages = {
     updating_chart: 'Loading the chart…',
     updating_map: 'Loading the map…',
     error_in_get_map_data: 'Error in retrieving the map data.',
+
     loading: 'Loading...',
     exportButtonTitle: 'Export',
     printButtonTitle: 'Print',
@@ -309,6 +284,7 @@ var localeMessages = {
     downloadCSV: 'Download Text',
     printChart: 'Print Chart',
     contextButtonTitle: 'Chart context menu',
+
     month_january: 'January',
     month_february: 'February',
     month_march: 'March',
@@ -321,6 +297,7 @@ var localeMessages = {
     month_october: 'October',
     month_november: 'November',
     month_december: 'December',
+
     short_month_january: 'Jan',
     short_month_february: 'Feb',
     short_month_march: 'Mar',
@@ -333,6 +310,7 @@ var localeMessages = {
     short_month_october: 'Oct',
     short_month_november: 'Nov',
     short_month_december: 'Dec',
+
     weekday_monday: 'Monday',
     weekday_tuesday: 'Tuesday',
     weekday_wednesday: 'Wednesday',
@@ -434,6 +412,33 @@ var localeMessages = {
     application_is_not_deployed: 'Application is not deployed.',
     save_in_progress: 'Saving is currently in progress, please try again later.'
   },
+  messages: {
+    not_any_record_found: 'Record was not found.',
+    not_history_for_tracking_code_found: 'No history found for tracking code.',
+    not_selected_principals: 'No principals are selected rename folder.',
+    write_dont_work_folder_name: 'Please select a name for To-Do Tasks folder.',
+    write_done_work_folder_name: 'Please select a name for Completed Tasks folder.',
+    write_dont_send_request_folder_name: 'Please select a name for Draft Request folder.',
+    save_attntion: 'Are you sure you want to proceed?',
+    changing_name: 'Renaming...',
+    sucsses_message: 'Changes are successfully saved.',
+    file_volume: 'File size',
+    file_upload: 'should not exceed 300 kb.',
+    file_type: 'Upload a file with jpg, png or gif format.',
+    delete_sucsses: 'Deleted Successfully',
+    reset_confirm: 'Are you sure you want to reset the background image as a default?',
+    doing_sucsses: 'Completed  Successfully',
+    file_type_attention: 'Only jpg, png or gif files are supported.',
+    delete_confirm_massage: 'Are you sure you want to delete?',
+    your_request_has_been_sent: 'Your request has been sent successfully.',
+    confirm_message: 'Are you sure?',
+    save_successfully: 'Saved Successfully.',
+    password_not_currect: 'Username or password is not correct.',
+    connection_not_safe: 'Connection is not secured.',
+    pleas_try_later: 'Please try again',
+    username_or_password_is_null: 'Username or password is not correct.',
+    control_behavior_not_exists: 'There is no form behavior for this form element.'
+  },
   Lock: {
     'bpms-lock-expired': 'Lock is expired!',
     'maximum-bpms-lock-user': 'Concurrent users limit exceeds the license!',
@@ -490,7 +495,7 @@ var localeMessages = {
     default_theme: 'Default Theme',
     banner: 'Top Banner',
     back_image_dsc: 'To select the login page and home page, use the form below.',
-    default_theme_dsc: 'Please select one of the below as a default Task-List theme.',
+    default_theme_dsc: 'Please select one of the bellow as a default Task-List theme.',
     banner_dsc: 'Use the form below to select a site banner.NOTE: ',
     before_login: 'Before login image:',
     after_login: 'Login image:',
@@ -659,7 +664,7 @@ var localeMessages = {
       select_row: 'Please select a row.',
       delete_timesheet_confirm: 'Are you sure you want to delete current timesheet?',
       save_time_confirm:
-        'This period is selected for another task. Do you want to replace it for current taks?',
+        'This period is selected tor another task. Do you want to replace it for current taks?',
       can_not_edit: 'This period is saved for a completed task. Edit is not permitted.',
       date_not_valid: 'Date is not valid'
     },
@@ -693,7 +698,7 @@ var localeMessages = {
       select_folder: 'Please select the folders that delegator can view',
       compare_fromDate_toDate: 'finish date is greater than start date'
     },
-    folder_to_delegate: 'Folders that delegate can view:',
+    folder_to_delegate: 'Folders that delegatee can view:',
     delegations: 'Delegations',
     delegation_edit: 'Edit delegation',
     delegation_user: 'Delegate user:',
@@ -713,7 +718,7 @@ var localeMessages = {
     more_users: 'There are more results, please use better keywords'
   },
   rule_criterias: {
-    new_rule: 'New Rule',
+    new_rule: 'Create a new Rule',
     edit_rule: 'Edit Rule',
     no_permission: 'You need a Permission!',
     tag_error: 'Error occurred during tag update!',
@@ -721,6 +726,7 @@ var localeMessages = {
     no_actions: 'No action!',
     action: 'Action',
     rule_name: 'Rule Name',
+    new_rule: 'New Rule',
     operation: 'Operation',
     select_folder: 'Select Folder'
   },
@@ -769,6 +775,7 @@ var localeMessages = {
     user: 'User',
     login_datetime: 'Login Date Time',
     logout_datetime: 'Logout Date Time',
+    server_name: 'Server Name',
     active_connections: 'Active connections',
     send_message_all: 'Send message to all',
     send_message_connection: 'Send message to this connection',
@@ -833,4 +840,5 @@ var localeMessages = {
     new_value: 'New value'
   }
 }
+
 export default localeMessages

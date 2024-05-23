@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow: auto; margin:1em">
+  <div style="overflow: auto; margin: 1em">
     <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100vw">Export to JS</VBtn>
     <table>
       <thead>
@@ -12,15 +12,15 @@
         <tr v-for="key in Object.keys(en)" :key="key">
           <td>{{ key }}</td>
 
-          <td v-for="(translation, index) in listOfAllTranslations" :key="getNewRandomUUID()">
-            <TranslationItem
-              :path="[key]"
-              :listKey="key"
-              :translation="translation"
-              :en="en"
-              @update:translation="(path, value) => updateTranslation(path, value, index)"
-            />
-          </td>
+          <TranslationItem
+            :path="[key]"
+            :listKey="key"
+            :translation="translation"
+            :en="en"
+            @update:translation="(path, value) => updateTranslation(path, value, index)"
+            v-for="(translation, index) in listOfAllTranslations"
+            :key="getNewRandomUUID()"
+          />
         </tr>
       </tbody>
     </table>
@@ -75,23 +75,34 @@ function getNewRandomUUID() {
   return newUuid
 }
 
+function addRowBetweenTwoKeys(keyBefore: string, keyAfter: string) {
+  const newKey = getNewRandomUUID()
+  const newTranslation = {}
+  const index = listOfAllTranslations.value.findIndex((translation) => translation === en)
+  const currentObject = listOfAllTranslations.value[index]
+  const keys = Object.keys(currentObject)
+  const keyBeforeIndex = keys.findIndex((key) => key === keyBefore)
+  const keyAfterIndex = keys.findIndex((key) => key === keyAfter)
+  const newKeys = keys.slice(0, keyAfterIndex)
+  newKeys.push(newKey)
+  newKeys.push(...keys.slice(keyAfterIndex))
+  const newObject = {}
+  newKeys.forEach((key) => {
+    newObject[key] = currentObject[key]
+  })
+  listOfAllTranslations.value[index] = newObject
+  return newKey
+}
+
 async function exportToMultipleJs() {
   const zip = new JSZip()
   listOfAllTranslations.value.forEach((translations, index) => {
-    const jsString = `var localeMessages = ${JSON.stringify(translations, null, 2)} export default localeMessages`
+    const jsString = `var localeMessages = ${JSON.stringify(translations, null, 2)}\nexport default localeMessages`
     zip.file(`${allLanguages[index].label}.js`, jsString)
   })
   const content = await zip.generateAsync({ type: 'blob' })
   saveAs(content, 'translations.zip')
 }
-
-watch(
-  listOfAllTranslations,
-  (newVal) => {
-    console.log('newVal', newVal)
-  },
-  { deep: true }
-)
 </script>
 
 <style scoped>
@@ -102,10 +113,8 @@ table {
 
 th,
 td {
-  padding: 0.25em 0em 0.25em 1em;
   vertical-align: text-top;
   text-align: left;
-  text-indent: -0.5em;
 }
 
 th {
@@ -129,7 +138,4 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
-
-
-
 </style>

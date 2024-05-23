@@ -9,14 +9,18 @@
             </th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <TranslationItem
+              :path="[...path, subKey]"
+              :listKey="subKey"
+              :translation="translation && translation[listKey] ? translation[listKey] : {}"
+              :en="en[listKey]"
+              @update:translation="(path, value) => emitUpdate(path, value)"
+            />
+          </tr>
+        </tbody>
       </table>
-      <TranslationItem
-        :path="[...path, subKey]"
-        :listKey="subKey"
-        :translation="translation && translation[listKey] ? translation[listKey] : {}"
-        :en="en[listKey]"
-        @update:translation="(path, value) => emitUpdate(path, value)"
-      />
     </div>
   </td>
   <td v-else>
