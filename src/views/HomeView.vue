@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
     <VBtn @click="exportToMultipleJs()" color="primary">Export to JS</VBtn>
+  <div class="wrapper">
     <table>
       <thead>
         <tr>
@@ -97,11 +97,13 @@ async function exportToMultipleJs() {
 .wrapper {
   height: calc(100vh - 50px);
   overflow: auto;
+  margin: 3em;
 }
 table {
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
   overflow: visible;
+  position: relative;
 }
 
 th,
@@ -114,6 +116,9 @@ th {
   vertical-align: bottom;
   background-color: #666;
   color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 tr:nth-child(even) th[scope='row'] {
