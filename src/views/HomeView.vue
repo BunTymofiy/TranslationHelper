@@ -1,5 +1,5 @@
 <template>
-    <VBtn @click="exportToMultipleJs()" color="primary">Export to JS</VBtn>
+  <VBtn @click="exportToMultipleJs()" color="primary">Export to JS</VBtn>
   <div class="wrapper">
     <table>
       <thead>
@@ -12,7 +12,7 @@
         <tr v-for="key in Object.keys(en)" :key="key">
           <!-- Add row button -->
 
-          <td>{{ key }}</td>
+          <td style="margin-left: 3em">{{ key }}</td>
 
           <TranslationItem
             :path="[key]"
@@ -27,7 +27,6 @@
       </tbody>
     </table>
   </div>
-  <span>kekw poopoo</span>
 </template>
 
 <script setup lang="ts">
@@ -97,7 +96,8 @@ async function exportToMultipleJs() {
 .wrapper {
   height: calc(100vh - 50px);
   overflow: auto;
-  margin: 3em;
+  margin-left: 3em;
+  margin-right: 1em;
 }
 table {
   border-collapse: collapse;
@@ -109,7 +109,7 @@ table {
 th,
 td {
   vertical-align: text-top;
-  text-align: left;
+  text-align: center;
 }
 
 th {
@@ -118,15 +118,6 @@ th {
   color: #fff;
   position: sticky;
   top: 0;
-  z-index: 1;
-}
-
-tr:nth-child(even) th[scope='row'] {
-  background-color: #f2f2f2;
-}
-
-tr:nth-child(odd) th[scope='row'] {
-  background-color: #fff;
 }
 
 tr:nth-child(even) {

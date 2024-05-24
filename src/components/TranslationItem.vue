@@ -81,7 +81,7 @@ td {
 }
 
 th {
-  background-color: #666;
+  background-color: #a82626;
   color: #fff;
 }
 
