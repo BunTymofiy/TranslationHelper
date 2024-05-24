@@ -1,6 +1,6 @@
 <template>
-  <div style="overflow: auto; margin: 1em">
-    <VBtn @click="exportToMultipleJs()" color="primary" style="width: 100vw">Export to JS</VBtn>
+  <div class="wrapper">
+    <VBtn @click="exportToMultipleJs()" color="primary">Export to JS</VBtn>
     <table>
       <thead>
         <tr>
@@ -10,6 +10,8 @@
       </thead>
       <tbody>
         <tr v-for="key in Object.keys(en)" :key="key">
+          <!-- Add row button -->
+
           <td>{{ key }}</td>
 
           <TranslationItem
@@ -25,6 +27,7 @@
       </tbody>
     </table>
   </div>
+  <span>kekw poopoo</span>
 </template>
 
 <script setup lang="ts">
@@ -75,23 +78,8 @@ function getNewRandomUUID() {
   return newUuid
 }
 
-function addRowBetweenTwoKeys(keyBefore: string, keyAfter: string) {
-  const newKey = getNewRandomUUID()
-  const newTranslation = {}
-  const index = listOfAllTranslations.value.findIndex((translation) => translation === en)
-  const currentObject = listOfAllTranslations.value[index]
-  const keys = Object.keys(currentObject)
-  const keyBeforeIndex = keys.findIndex((key) => key === keyBefore)
-  const keyAfterIndex = keys.findIndex((key) => key === keyAfter)
-  const newKeys = keys.slice(0, keyAfterIndex)
-  newKeys.push(newKey)
-  newKeys.push(...keys.slice(keyAfterIndex))
-  const newObject = {}
-  newKeys.forEach((key) => {
-    newObject[key] = currentObject[key]
-  })
-  listOfAllTranslations.value[index] = newObject
-  return newKey
+async function addRowBetweenTwoKeys(keyBefore: string, keyAfter: string) {
+  const newKey = await prompt('Enter the new key')
 }
 
 async function exportToMultipleJs() {
@@ -106,9 +94,14 @@ async function exportToMultipleJs() {
 </script>
 
 <style scoped>
+.wrapper {
+  height: calc(100vh - 50px);
+  overflow: auto;
+}
 table {
   border-collapse: collapse;
   border: 0.1em solid #d6d6d6;
+  overflow: visible;
 }
 
 th,

@@ -772,7 +772,9 @@ var localeMessages = {
     active_connections: 'Active connections',
     send_message_all: 'Send message to all',
     send_message_connection: 'Send message to this connection',
-    start_datetime: 'Start Date Time'
+    start_datetime: 'Start Date Time',
+    message: 'Message',
+    module: 'Module'
   },
   rule_management: {
     title: 'Manage folders rules',
