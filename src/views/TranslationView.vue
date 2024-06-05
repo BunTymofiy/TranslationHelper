@@ -10,17 +10,17 @@
   >
     <div>{{ key }}</div>
     <div v-for="(objLang, objKey, index) in objectOfTranslations" :key="objLang">
-      <div v-if="typeof en[key] === 'object' && objKey === 'en'">
+      <div v-if="typeof en[key] == 'object'">
         <div
-          v-for="subKey in getKeys(en[key])"
+          v-for="subKey in Object.keys(en[key])"
           :key="subKey"
           style="display: flex; gap: 2em; border: 1px solid black"
         >
           <div>{{ subKey }}</div>
-          <div v-for="(subObjLang, subObjKey, subIndex) in objectOfTranslations" :key="objLang">
-            <div v-if="typeof en[key][subKey] === 'object' && objKey === 'en'">
+          <div v-for="(objLang, objKey, index) in objectOfTranslations" :key="objLang">
+            <div v-if="typeof en[key][subKey] == 'object'">
               <div
-                v-for="subSubKey in getKeys(en[key][subKey])"
+                v-for="subSubKey in Object.keys(en[key][subKey])"
                 :key="subSubKey"
                 style="display: flex; gap: 2em; border: 1px solid black"
               >
@@ -29,33 +29,14 @@
             </div>
             <div v-else>
               <div>
-                <input
-                  :value="
-                    subObjLang && subObjLang[key] && subObjLang[key][subKey]
-                      ? subObjLang[key][subKey]
-                      : ''
-                  "
-                  @change="($event.target as HTMLInputElement).value"
-                  placeholder="Enter translation here..."
-                  :class="
-                    subObjLang && subObjLang[key] && subObjLang[key][subKey]
-                      ? 'dataPresent'
-                      : 'dataMissing'
-                  "
-                />
+                {{ objLang && objLang[key] && objLang[key][subKey] ? objLang[key][subKey] : '' }}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div v-else-if="typeof en[key] === 'object' && objKey !== 'en'"></div>
       <div v-else>
-        <input
-          :value="objLang && objLang[key] ? objLang[key] : ''"
-          @change="($event.target as HTMLInputElement).value"
-          placeholder="Enter translation here..."
-          :class="objLang && objLang[key] ? 'dataPresent' : 'dataMissing'"
-        />
+        <div>{{ objLang && objLang[key] ? objLang[key] : '' }}</div>
       </div>
     </div>
   </div>
@@ -104,21 +85,4 @@ function getKeys(obj: Record<string, any>) {
 }
 </script>
 
-<style scoped>
-.dataMissing {
-  background-color: rgba(255, 0, 0, 0.344);
-}
-.dataPresent {
-  background-color: rgba(0, 255, 0, 0.344);
-}
-input {
-  padding: 0.25em 0.5em;
-  border: 0.1em solid #454545;
-  border-radius: 0.5em;
-
-  &:hover {
-    transform: scale(1.03);
-    transition: transform 0.3s ease-in-out;
-  }
-}
-</style>
+<style scoped></style>
